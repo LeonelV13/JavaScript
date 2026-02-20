@@ -50,11 +50,14 @@ const cargarPublicaciones = async num => {
             contador++;
             if (i == num-1) observer.observe(newPublicacion);
         } else {
-            let noMore = document.createElement("h3");
-            noMore.textContent = "No hay mas Publicaciones";
-            documentFragment.appendChild(noMore);
-            publicaciones.appendChild(documentFragment);
-            break;
+            if (publicaciones.lastElementChild.id !== "nomore") {
+                let noMore = document.createElement("h3");
+                noMore.textContent = "No hay mas Publicaciones";
+                noMore.id = "nomore";
+                documentFragment.appendChild(noMore);
+                publicaciones.appendChild(documentFragment);
+                break;
+            }
         }
     }
     publicaciones.appendChild(documentFragment);
